@@ -136,7 +136,7 @@ class HBNBCommand(cmd.Cmd):
             else:
                 value = shlex.split(value)[0]
 
-            setattr(new_instance, key_, value)
+            storage.new(new_instance, key_, value)
 
         storage.save()
         print(new_instance.id)
