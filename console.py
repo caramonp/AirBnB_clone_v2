@@ -131,8 +131,6 @@ class HBNBCommand(cmd.Cmd):
 
             if value[0] != '\"' and '.' in value:
                 value = float(value)
-            elif value[0] != '\"':
-                value = int(value)
             else:
                 value = shlex.split(value)[0]
 
