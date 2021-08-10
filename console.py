@@ -120,15 +120,24 @@ class HBNBCommand(cmd.Cmd):
         if not args:
             print("** class name missing **")
             return
-        argument = shlex.split(args)
+        argument = args.split(args)
         if argument[0] not in HBNBCommand.classes:
             print("** class doesn't exist **")
             return
         new_instance = HBNBCommand.classes[argument[0]]()
         for item in argument[1:]:
             key_ = item.split("=")[0]
-            value = item.split("=")[1]
+            value = item.split("=")[1].replace('_', ' ')
+            #conditionals
+            if value[0] != '\"' and '.' in value:
+                value =float(value)
+            elif value[0] != '\"':
+                value = int(value)
+            else:
+                 value = shlex.split(value)[0]
+                
             setattr(new_instance, key_, value)
+          
         storage.save()
         print(new_instance.id)
         storage.save()
