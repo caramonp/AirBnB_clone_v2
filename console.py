@@ -123,7 +123,10 @@ class HBNBCommand(cmd.Cmd):
         if argument[0] not in HBNBCommand.classes:
             print("** class doesn't exist **")
             return
-        new_instance = HBNBCommand.classes[argument[0]]()
+        elif argument[0] not in HBNBCommand.classes:
+            print("** class doesn't exist **")
+            return
+        new_instance = HBNBCommand.classes[arguments[0]]()
         for item in argument[1:]:
             key_ = item.split("=")[0]
             value = item.split("=")[1].replace('_', ' ')
@@ -136,7 +139,8 @@ class HBNBCommand(cmd.Cmd):
                 value = shlex.split(value)[0]
 
             setattr(new_instance, key_, value)
-
+            
+        storage.new(new_instance)
         storage.save()
         print(new_instance.id)
         storage.save()
