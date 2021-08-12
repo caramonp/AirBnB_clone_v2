@@ -20,14 +20,18 @@ class DBStorage:
     """DB Storage class"""
     __engine = None
     __session = None
-    
+
     def __init__(self):
             self.__engine = create_engine('mysql+mysqldb://{}:{}@{}/{}'\
-            .format(environ['HBNB_MYSQL_USER'], 
+            .format(environ['HBNB_MYSQL_USER'],
             environ['HBNB_MYSQL_PWD'],
-            environ['HBNB_MYSQL_HOST'], 
+            environ['HBNB_MYSQL_HOST'],
             environ['HBNB_MYSQL_DB'], pool_pre_ping=True))
+<<<<<<< HEAD
           
+=======
+
+>>>>>>> 4f6d9b4ddc06603c3d7a85c50d65b6a3244f532f
             if 'HBNB_ENV' in environ and environ['HBNB_ENV'] == 'test':
               Base.metadata.drop_all(self.__engine)
 
@@ -37,27 +41,27 @@ class DBStorage:
         list_result = {}
         if cls:
           for item in self.__session.query(cls).all():
-              result[item.__class__.__name__ + '.' + item.id] = item
+              list_result[item.__class__.__name__ + '.' + item.id] = item
         else:
             for clase_in in self.classes:
                 for item in self.__session.query(clase_in).all():
-                    result[item.__class__.__name__ + '.' + item.id] = item
+                    list_result[item.__class__.__name__ + '.' + item.id] = item
 
         return list_result
 
-        
-    def new(self, obj):      
-        type(self).__session.add(obj)
+
+    def new(self, obj):
+        self.__session.add(obj)
 
     def save(self):
-        type(self).__session.commit()
+        self.__session.commit()
 
     def delete(self, obj=None):
         if obj:
-            type(self).__session.delete(obj)
-            
+            self.__session.delete(obj)
+
     def reload(self):
-      
+
         Base.metadata.create_all(self.__engine)
         session_maker = sessionmaker(bind=self.__engine,
                                        expire_on_commit=False)
