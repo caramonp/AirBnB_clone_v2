@@ -1,6 +1,5 @@
 #!/usr/bin/python3
 """ This script defines a class DBStorage """
-from models import base_model
 from models.base_model import Base
 from sqlalchemy import (create_engine)
 from sqlalchemy.orm import sessionmaker, scoped_session
