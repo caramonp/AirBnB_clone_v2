@@ -13,6 +13,7 @@ from models.review import Review
 import shlex
 from models.engine.file_storage import FileStorage
 
+
 class HBNBCommand(cmd.Cmd):
     """ Contains the functionality for the HBNB console"""
 

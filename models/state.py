@@ -5,6 +5,7 @@ from models.base_model import Base
 from sqlalchemy import String, DateTime, Column, ForeignKey
 from sqlalchemy.orm import relationship
 
+
 class State(BaseModel, Base):
     """ State class """
 
@@ -16,7 +17,7 @@ class State(BaseModel, Base):
     def cities(self):
         """ represent a relationship with the class City
         """
-        from models import  storage
+        from models import storage
         list_cities = []
         all_cities = storage.all(City)
         for key, value in all_cities:
