@@ -1,8 +1,8 @@
 #!/usr/bin/python3
 """ Place Module for HBNB project """
-from sqlalchemy.sql.sqltypes import Float, Integer
+from models import amenity
 from models.base_model import BaseModel, Base
-from sqlalchemy import String, Column, ForeignKey, Table
+from sqlalchemy import String, Column, ForeignKey, Table, Float, Integer
 from sqlalchemy.orm import relationship
 from os import environ
 
@@ -17,7 +17,7 @@ place_amenity = Table('place_amenity', metadata,
                              nullable=False))
 
 
-class Place(BaseModel):
+class Place(BaseModel, Base):
     """ A place to stay """
 
     __tablename__ = "places"
