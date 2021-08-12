@@ -13,14 +13,13 @@ from models.amenity import Amenity
 from models.review import Review
 
 
-classes = {User, City, Place, State, Amenity, Review}
-
 
 class DBStorage:
 
     """DB Storage class"""
     __engine = None
     __session = None
+    classes = {User, City, Place, State, Amenity, Review}
 
     def __init__(self):
         """init"""
