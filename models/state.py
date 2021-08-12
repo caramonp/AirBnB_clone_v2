@@ -13,13 +13,11 @@ class State(BaseModel, Base):
     name = Column(String(128), nullable=False)
     cities = relationship("City", cascade="all, delete")
 
-    @property
+    """@property
     def cities(self):
-        """ represent a relationship with the class City
-        """
         from models import storage
         list_cities = []
         all_cities = storage.all(City)
         for key, value in all_cities:
             list_cities.append(value)
-        return list_cities
+        return list_cities"""
